@@ -1,0 +1,13 @@
+{
+  "name": "vuepress-theme-vuejs-berlin",
+  "version": "0.1.0",
+  "description": "Theme for vuejs.berlin",
+  "main": "Layout.vue",
+  "repository": "https://github.com/nkoehring/vuepress-theme-vuejs-berlin",
+  "author": "koehr <n@koehr.in>",
+  "license": "MIT",
+  "dependencies": {
+    "animate.css": "^3.6.1",
+    "v-lazy-img": "^0.1.0"
+  }
+}
