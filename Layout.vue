@@ -134,9 +134,18 @@ p {
 }
 .content-container {
   display: block;
-  width: 100vw;
+  width: calc(100vw - 4rem);
   max-width: 40rem;
   margin: auto;
   padding: 0 2rem;
+}
+@media screen and (max-width: 600px) {
+  .theme-container > header > h1 {
+    font-size: 1em;
+  }
+  .content-container {
+    width: calc(100vw - 2rem);
+    padding: 0 1rem;
+  }
 }
 </style>

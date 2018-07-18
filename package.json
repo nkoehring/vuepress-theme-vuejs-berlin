@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-vuejs-berlin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Theme for vuejs.berlin",
   "main": "Layout.vue",
   "repository": "https://github.com/nkoehring/vuepress-theme-vuejs-berlin",
