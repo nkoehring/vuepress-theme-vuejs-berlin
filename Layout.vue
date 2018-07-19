@@ -124,6 +124,9 @@ p {
   opacity: 0
 }
 
+.theme-container > header {
+  white-space: nowrap;
+}
 .theme-container > footer {
   position: absolute;
   top: calc(100vh - 1.6rem);
@@ -140,9 +143,6 @@ p {
   padding: 0 2rem;
 }
 @media screen and (max-width: 600px) {
-  .theme-container > header > h1 {
-    font-size: 1em;
-  }
   .content-container {
     width: calc(100vw - 2rem);
     padding: 0 1rem;
