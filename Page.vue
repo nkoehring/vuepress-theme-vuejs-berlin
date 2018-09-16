@@ -1,11 +1,16 @@
 <template>
-  <article class="content-container" :class="{distractionFree, dark}">
-    <Content />
-  </article>
+  <div>
+    <article id="page-wrap" class="content-container" :class="{distractionFree, dark}">
+      <Content />
+    </article>
+  </div>
 </template>
 
 <script>
+import SideBar from './SideBar.vue'
+
 export default {
+  components: { SideBar },
   data () {
     return {
       distractionFree: false,
@@ -16,6 +21,13 @@ export default {
 </script>
 
 <style>
+article.content-container {
+  display: block;
+  width: calc(100vw - 4rem);
+  max-width: 40rem;
+  margin: auto;
+  padding: 0 2rem;
+}
 article.content-container h1,
 article.content-container h2,
 article.content-container h3 {

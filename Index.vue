@@ -1,49 +1,57 @@
 <template>
-  <div id="home" class="content-container" @click="clickedy">
-    <div class="container newsletters">
-      <header>NEWS LETTERS</header>
-      <ol>
-        <li v-for="nl in newsletters"><router-link :to="nl.path">{{ nl.title }}</router-link></li>
-      </ol>
-      <footer v-if="newsletters.length > 3"><router-link to="/newsletters/">see all</router-link></footer>
-      <footer class="empty" v-if="newsletters.length === 0">nothing here yet</footer>
-    </div>
-    <div class="container meetups">
-      <header>MEETUPS TALKS</header>
-      <ol>
-        <li v-for="mu in meetups"><router-link :to="mu.path">{{ mu.title }}</router-link></li>
-      </ol>
-      <footer v-if="meetups.length > 3"><router-link to="/meetups/">see all</router-link></footer>
-      <footer class="empty" v-if="meetups.length === 0">nothing here yet</footer>
-    </div>
-    <div class="container jobs">
-      <header>JOB BOARD</header>
-      <ol>
-        <li v-for="j in jobs"><router-link :to="j.path">{{ j.title }}</router-link></li>
-      </ol>
-      <footer v-if="jobs.length > 3"><router-link to="/jobs/">see all</router-link></footer>
-      <footer class="empty" v-if="jobs.length === 0">nothing here yet</footer>
-    </div>
+  <div id="home">
+    <article class="container">
+      <header>
+        <h1>Vuejs // Berlin</h1>
+        <p>Berlins community around the <a href="https://vuejs.org">Vue Framework</a> and its ecosystem.</p>
+      </header>
+
+      <p>
+        Vue is an progressive, approachable, versatile and performant
+        JavaScript framework. If you're not sure what all this means or how it
+        can help you, check out the Vue homepage or visit our meetup. We're
+        happy to help you out!
+      </p>
+
+      <IndexSection name="Meetups & Talks" path="/meetups/" :newest="newestMeetup">
+        Out meetups take place monthly every second Tuesday at 7pm. We usually
+        have at least one talk right after we ate some pizza and had some
+        drinks. We also <Link href="https://www.instagram.com/vuejs_berlin/">stream</Link>
+        and <Link href="https://www.youtube.com/channel/UClSmiKom-8XsWbi5NTWurjg">record</Link>
+        the talks every time. Records are usually available one or two days after the meetup.
+      </IndexSection>
+
+      <IndexSection name="Newsletters" path="/newsletters/" :newest="newestNewsletter">
+        Shortly after every meetup we publish newsletters to help you keeping
+        up with all the events in and around the community.
+      </IndexSection>
+
+      <IndexSection name="Jobboard" path="/jobs/" :newest="newestJob">
+        In future we want to offer a job board with local job opportunities. Stay tuned!
+      </IndexSection>
+
+      <SiteFooter />
+    </article>
   </div>
 </template>
 
 <script>
+import IndexSection from './IndexSection'
+import Link from './Link'
+import SiteFooter from './SiteFooter'
+
 export default {
-  methods: {
-    clickedy () {
-      console.log('page n site', this.$page, this.$site)
-    }
-  },
+  components: { IndexSection, Link, SiteFooter },
   computed: {
-    newsletters () {
-      return this.$site.pages.filter(page => page.path.match(/^\/newsletters\/.+\.html/)).reverse().slice(0,3)
+    newestNewsletter () {
+      return this.$site.pages.filter(page => page.path.match(/^\/newsletters\/.+\.html/)).reverse()[0]
     },
-    meetups () {
-      return this.$site.pages.filter(page => page.path.match(/^\/meetups\/.+\.html/)).reverse().slice(0,3)
+    newestMeetup () {
+      return this.$site.pages.filter(page => page.path.match(/^\/meetups\/.+\.html/)).reverse()[0]
     },
-    jobs () {
-      return this.$site.pages.filter(page => page.path.match(/^\/jobs\/.+\.html/)).reverse().slice(0,3)
-    },
+    newestJob () {
+      return this.$site.pages.filter(page => page.path.match(/^\/jobs\/.+\.html/)).reverse()[0]
+    }
   }
 }
 </script>
@@ -54,49 +62,26 @@ export default {
   flex-flow: column nowrap;
   justify-content: space-evenly;
   height: 100%;
+  margin-top: 100vh;
+  background: white;
 }
-#home .container {
-  position: relative;
-  flex: 0 0 auto;
+
+#home > .container {
   width: 100%;
-  max-width: calc(100vw - 4rem);
-  margin: .5rem 0;
-  height: 9em;
-  background: rgba(255, 255, 255, .8);
-  color: #35495E;
-  font-weight: bold;
-  border: 1px solid #41B883;
-  transition: background .3s;
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
 }
-#home .container:hover {
-  background: rgba(255, 255, 255, 1.0);
+
+#home > footer {
+  margin-top: 2em;
+  font-size: 1rem;
+  text-align: right;
 }
-#home .container > header {
-  position: absolute;
-  top: 7em;
-  left: 0;
-  width: 1em;
-  height: 1em;
-  text-align: center;
-  transform: rotate(-90deg);
-  transform-origin: top right;
-}
-#home .container > footer {
-  text-align: center;
-}
-#home .container > footer.empty {
-  line-height: 5em;
-}
-#home .container > ol {
-  list-style: none;
-  margin: 1em 3em 1em;
-}
-#home .container li {
-  line-height: 1.2em;
-  margin: .5em 0;
-}
-#home .container li > a {
-  text-shadow: 0 0 2px white, 0 0 10px white;
+
+#home h2 {
+  margin-top: 2em;
+  font-size: 1.2rem;
 }
 </style>
 

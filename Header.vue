@@ -1,7 +1,11 @@
 <template>
-  <header>
-    <router-link class='go-home' to="/"><Logo /></router-link>
-    <h1>{{ title }}</h1>
+  <header :class="{'with-menu': withMenu}">
+    <div class="logo" @click="$emit('logo-click')">
+      <Logo />
+    </div>
+    <div class="title">
+      <h1>{{ title }}</h1>
+    </div>
   </header>
 </template>
 
@@ -11,7 +15,8 @@ import Logo from './Logo.vue'
 export default {
   components: { Logo },
   props: {
-    title: String
+    title: String,
+    withMenu: Boolean
   }
 }
 </script>
@@ -26,21 +31,32 @@ header {
   background: #F7F7F7;
   border-bottom: 4px solid #F0F0F0;
 }
-header > h1 {
+.title {
+  max-width: 40rem;
+  margin: auto;
+}
+.title > h1 {
   display: inline-block;
   margin: 0;
-  padding: 1em 1rem;
+  padding: 1em 0;
   line-height: 1em;
   font-size: 1.5rem;
   vertical-align: top;
 }
-header .go-home {
-  display: inline-block;
+.logo {
+  transition: transform .2s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 4rem;
   padding: .5rem 1rem;
 }
-header .go-home > svg#logo {
+.logo > svg#logo {
   width: 3rem;
   height: 3rem;
+}
+
+.with-menu .logo {
+  transform: rotate(90deg) translate(-10px, 20px);
 }
 </style>

@@ -1,24 +1,20 @@
 <template>
-  <div class="theme-container">
-    <Header :title="isHome ? $site.title : $page.title" v-if="!isHome || !fresh" />
-    <transition name='fade'>
-      <div v-if="isHome && fresh" @click="fresh = false" class="greeting">
-        <div id="wallpaper" v-lazy-load-bg="wallpaper" />
+  <div class="theme-container" :class="{'with-menu': withMenu}">
+    <template v-if="!isHome">
+      <Header :title="headerTitle" @logo-click="withMenu = !withMenu" :withMenu="withMenu" />
+      <SideBar @click="withMenu = false" />
+    </template>
+
+    <div v-if="isHome"  class="greeting">
+      <div id="wallpaper" v-lazy-load-bg="wallpaper">
         <Logo />
-        <div class="click-hint animated twice tada">click anywhere</div>
+        <div class="hint animated twice tada">scroll down</div>
+        <SiteFooter />
       </div>
-      <div class="index-wrapper" v-else-if="isHome">
-        <div id="wallpaper" v-lazy-load-bg="wallpaper" />
-        <Index />
-      </div>
-      <Page v-else />
-    </transition>
-    <footer v-if="isHome">
-      <router-link to='/about'>about</router-link>
-      © 2017 - today <a href="https://koehr.in">koehr</a>
-      —
-      Background image "Berlin Skyline Sunset" © 2014 <a href="http://sumfinity.com/">Nico Trinkhaus</a>
-    </footer>
+      <Index />
+    </div>
+    <Page v-else />
+
   </div>
 </template>
 
@@ -29,15 +25,24 @@ import Index from './Index.vue'
 import Page from './Page.vue'
 import Header from './Header.vue'
 import SideBar from './SideBar.vue'
+import SiteFooter from './SiteFooter.vue'
 
 export default {
-  components: { Logo, Header, SideBar, Index, Page },
+  components: { Logo, Header, Index, Page, SiteFooter, SideBar },
   data () {
-    return { fresh: true, wallpaper }
+    return { wallpaper, withMenu: false }
+  },
+  watch: {
+    $route () {
+      this.withMenu = false
+    }
   },
   computed: {
     isHome () {
       return this.$page.frontmatter.home
+    },
+    headerTitle () {
+      return this.isHome ? this.$site.title : this.$page.title
     },
     sidebarElements () {
       const headers = this.$page.headers || []
@@ -79,7 +84,13 @@ p {
   line-height: 1.7em;
 }
 .theme-container {
+  min-height: calc(100vh - 5rem);
   padding-top: 5rem;
+  transition: transform .2s ease;
+  transform: translate(0, 0);
+}
+.theme-container.with-menu {
+  transform: translate(260px, 0);
 }
 .greeting #logo {
   position: fixed;
@@ -107,7 +118,7 @@ p {
 .index-wrapper {
   height: calc(100vh - 5rem);
 }
-.click-hint {
+.hint {
   position: absolute;
   width: 100vw;
   top: 75vh;
@@ -127,20 +138,13 @@ p {
 .theme-container > header {
   white-space: nowrap;
 }
-.theme-container > footer {
+#wallpaper > footer {
   position: absolute;
-  top: calc(100vh - 1.6rem);
-  width: calc(100vw - .6rem);
+  bottom: 0;
+  width: 99%;
   font-size: 1rem;
   text-align: right;
-  color: rgba(255, 255, 255, .5);
-}
-.content-container {
-  display: block;
-  width: calc(100vw - 4rem);
-  max-width: 40rem;
-  margin: auto;
-  padding: 0 2rem;
+  color: rgba(255, 255, 255, .4);
 }
 @media screen and (max-width: 600px) {
   .content-container {
