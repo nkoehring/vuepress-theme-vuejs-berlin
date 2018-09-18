@@ -20,14 +20,7 @@ export default {
 }
 </script>
 
-<style>
-article.content-container {
-  display: block;
-  width: calc(100vw - 4rem);
-  max-width: 40rem;
-  margin: auto;
-  padding: 0 2rem;
-}
+<style scoped>
 article.content-container h1,
 article.content-container h2,
 article.content-container h3 {

@@ -146,6 +146,13 @@ p {
   text-align: right;
   color: rgba(255, 255, 255, .4);
 }
+article.content-container {
+  display: block;
+  width: calc(100vw - 4rem);
+  max-width: 40rem;
+  margin: auto;
+  padding: 0 2rem;
+}
 @media screen and (max-width: 600px) {
   .content-container {
     width: calc(100vw - 2rem);

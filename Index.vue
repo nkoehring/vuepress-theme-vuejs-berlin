@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <article class="container">
+    <article class="content-container">
       <header>
         <h1>Vuejs // Berlin</h1>
         <p>Berlins community around the <a href="https://vuejs.org">Vue Framework</a> and its ecosystem.</p>
@@ -66,13 +66,6 @@ export default {
   background: white;
 }
 
-#home > .container {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 30px;
-}
-
 #home > footer {
   margin-top: 2em;
   font-size: 1rem;
@@ -80,7 +73,7 @@ export default {
 }
 
 #home h2 {
-  margin-top: 2em;
+  margin-top: 3em;
   font-size: 1.2rem;
 }
 </style>
