@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <article id="page-wrap" class="content-container" :class="{distractionFree, dark}">
-      <Content />
-    </article>
-  </div>
+  <article id="page-wrap" class="content-container" :class="{distractionFree, dark}">
+    <Content />
+  </article>
 </template>
 
 <script>
@@ -21,9 +19,9 @@ export default {
 </script>
 
 <style scoped>
-article.content-container h1,
-article.content-container h2,
-article.content-container h3 {
+.content-container h1,
+.content-container h2,
+.content-container h3 {
   margin-top: -4rem;
   padding-top: 5.5rem;
 }
