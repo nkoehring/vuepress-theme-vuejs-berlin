@@ -59,4 +59,10 @@ header {
 .with-menu .logo {
   transform: rotate(90deg) translate(-10px, 20px);
 }
+
+@media screen and (max-width: 780px) {
+  .title {
+    margin: 0 0 0 72px;
+  }
+}
 </style>
