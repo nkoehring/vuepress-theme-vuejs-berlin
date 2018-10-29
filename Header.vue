@@ -3,7 +3,9 @@
     <div class="logo" @click="$emit('logo-click')">
       <Logo />
     </div>
-    <h1 class="title">{{ title }}</h1>
+    <div class="title">
+      <h1>{{ title }}</h1>
+    </div>
   </header>
 </template>
 
@@ -30,11 +32,16 @@ header {
   border-bottom: 4px solid #F0F0F0;
 }
 .title {
+  max-width: 40rem;
+  margin: auto;
+}
+.title > h1 {
+  display: inline-block;
   margin: 0;
   padding: 1em 0;
   line-height: 1em;
   font-size: 1.5rem;
-  text-align: center;
+  vertical-align: top;
 }
 .logo {
   transition: transform .2s ease;
