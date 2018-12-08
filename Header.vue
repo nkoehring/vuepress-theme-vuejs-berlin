@@ -2,7 +2,7 @@
   <header :class="{'with-menu': withMenu}">
     <div class="logo" @click="$emit('logo-click')">
       <Logo />
-      <div id="menu-hint">There's a menu hidden here ➠</div>
+      <div id="menu-hint" class="animated once fade-away delayed-more">There's a menu hidden here ➠</div>
     </div>
     <div class="title">
       <h1>{{ title }}</h1>
@@ -22,6 +22,7 @@ export default {
 }
 </script>
 
+<style src="./animations.css"></style>
 <style scoped>
 header {
   position: fixed;

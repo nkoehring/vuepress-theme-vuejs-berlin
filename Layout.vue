@@ -30,12 +30,22 @@ import SiteFooter from './SiteFooter.vue'
 export default {
   components: { Logo, Header, Index, Page, SiteFooter, SideBar },
   data () {
-    return { wallpaper, withMenu: false }
+    return { wallpaper, withMenu: false, hintMenu: true  }
+  },
+  mounted () {
+    if (localStorage.getItem('no-menu-hint')) this.hintMenu = false
+    else localStorage.setItem('no-menu-hint', 1)
   },
   watch: {
     $route () {
       // close menu on route change
       this.withMenu = false
+    },
+    '$page.frontmatter.home' (isHome) {
+      if (!isHome && this.hintMenu) {
+        this.withMenu = true
+        setTimeout(() => { this.withMenu = false }, 1000)
+      }
     }
   },
   computed: {
