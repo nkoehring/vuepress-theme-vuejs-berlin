@@ -34,6 +34,7 @@ export default {
   },
   watch: {
     $route () {
+      // close menu on route change
       this.withMenu = false
     }
   },
