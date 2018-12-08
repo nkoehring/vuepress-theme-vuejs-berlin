@@ -2,6 +2,7 @@
   <header :class="{'with-menu': withMenu}">
     <div class="logo" @click="$emit('logo-click')">
       <Logo />
+      <div id="menu-hint" class="animated once fade-away delayed-more">There's a menu hidden here ➠</div>
     </div>
     <div class="title">
       <h1>{{ title }}</h1>
@@ -21,6 +22,7 @@ export default {
 }
 </script>
 
+<style src="./animations.css"></style>
 <style scoped>
 header {
   position: fixed;
@@ -55,6 +57,13 @@ header {
   width: 3rem;
   height: 3rem;
 }
+#menu-hint {
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  margin-left: .5em;
+  margin-top: 15em;
+}
 
 .with-menu .logo {
   transform: rotate(90deg) translate(-10px, 20px);
@@ -63,6 +72,9 @@ header {
 @media screen and (max-width: 780px) {
   .title {
     margin: 0 0 0 72px;
+  }
+  #menu-hint {
+    margin-left: -1em;
   }
 }
 </style>
