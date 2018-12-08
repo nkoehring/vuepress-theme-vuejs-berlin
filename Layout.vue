@@ -151,8 +151,8 @@ p {
 }
 #wallpaper > footer {
   position: absolute;
-  bottom: 0;
-  width: 99%;
+  bottom: 1em;
+  width: 97%;
   font-size: 1rem;
   text-align: right;
   color: rgba(255, 255, 255, .4);
